@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());~
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+~app.use(express.urlencoded({ extended: true }));
 
 // API Routes
 app.get("/api/doctors", async (req, res) => {
@@ -102,11 +102,11 @@ mongoose
   });
 
 // Serve Static Assets in Production
-const clientBuildPath = path.join(__dirname, "../my-app/dist");
-app.use(express.static(clientBuildPath));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(clientBuildPath, "index.html"));
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Backend is running successfully 🚀",
+  });
 });
 
 // Start Server
